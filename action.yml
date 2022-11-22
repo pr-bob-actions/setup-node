@@ -1,0 +1,30 @@
+name: "Setup Node, yarn and cache"
+description: "Setup node, enable yarn with corepack and activate cache"
+
+inputs:
+  node-version:
+    description: "Node's version to use (cf: actions/setup-node)"
+    required: false
+    default: lts/*
+  cache:
+    description: "Used to specify a package manager for caching (yarn|npm|pnpm) default yarn (cf: actions/setup-node)"
+    required: false
+    default: "yarn"
+  cache-dependency-path:
+    description: "Used to specify the path to a dependency file (cf: actions/setup-node)"
+    required: false
+    default: "**/yarn.lock"
+
+runs:
+  using: composite
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{inputs.node-version}}
+        cache: ${{inputs.cache}}
+        cache-dependency-path: ${{inputs.cache-dependency-path}}
+
+    - name: Activate Yarn
+      shell: bash
+      run: corepack enable
