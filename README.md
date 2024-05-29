@@ -16,7 +16,7 @@ All inputs refer to [actions/setup-node](https://github.com/actions/setup-node)'
 ## How to use
 
 ```yaml
-- uses: pr-bob-actions/setup-node@v1
+- uses: pr-bob-actions/setup-node@v2
   with:
-    node-version: 16
+    node-version: 20
 ```
